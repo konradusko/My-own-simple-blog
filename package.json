@@ -1,0 +1,25 @@
+{
+  "name": "simple-blog",
+  "version": "1.0.0",
+  "description": "Prosty blog",
+  "main": "app.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/konradusko/My-own-simple-blog.git"
+  },
+  "keywords": [
+    "Blog"
+  ],
+  "author": "Konrad Bolesławski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/konradusko/My-own-simple-blog/issues"
+  },
+  "homepage": "https://github.com/konradusko/My-own-simple-blog#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
