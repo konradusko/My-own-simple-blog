@@ -8,9 +8,20 @@ function Content(){
     this.contentProcessing = []
     this.queque = {}
     this.content = []
+    this.lastUpdate = new Date().getTime()
+    this.tags = []
+}
+Content.prototype.getTags = function(){
+    return this.tags
+}
+Content.prototype.getTimeLastUpdate = function(){
+    return this.lastUpdate
 }
 Content.prototype.operationStatus = function(){
     return this.operationRunning
+}
+Content.prototype.getContent = function(){
+    return this.content
 }
 Content.prototype.check_md_type = function(name){
     if(typeof name != 'string')
@@ -39,6 +50,14 @@ Content.prototype.check_queque = function(filename){
                 delete this.callBack 
                 return
             }
+            let tmp_tags = []
+            for(const single_content of content){
+                for(const tags of single_content.tags){
+                    if(!tmp_tags.includes(tags))
+                        tmp_tags.push(tags)
+                }
+            }
+            this.tags = tmp_tags
             this.content = content
             this.contentProcessing = []
             this.queque = {}
@@ -82,7 +101,13 @@ Content.prototype.processContentFiles= function(array_files,path_content){
     })
 }
 Content.prototype.loadContent = function(callback){
+    if(this.operationRunning){
+        if(callback)
+            return callback('Operation is already running',null)
+        return null
+    }
     this.operationRunning = true
+    this.lastUpdate = new Date().getTime()
     if(callback)
     this.callBack = callback
     console.log(`Loading content on time ${createTime()}`)

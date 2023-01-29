@@ -5,6 +5,7 @@ import { marked } from 'marked';
 import fs from 'fs'
 import {content} from './utils/content.mjs'
 import {Module_config } from './modules/config.mjs'
+import {middlewares} from './utils/middlewares.mjs'
 dotenv.config()
 //Init
 const PORT = 3000
@@ -20,27 +21,25 @@ app.engine('html', ejs.renderFile);
 app.set('views','./template')
 
 
-//1. Wczytanie w tle wszystkich blogów razem z tagami
-//2. Co x czasu odświeżanie ich - sprawdzanie czy nie wpadły nowe
-
 //Loading content
 
 content.loadContent(function(err,message){
-    console.log(err,message)
-    console.log(content.operationStatus())
+    if(err){
+        console.log(err)
+        return 
+    }
+    console.log(message)
+    app.get('/',middlewares.checkUpdate,(req,res)=>{
+        console.log(content.getTags())
+        res.send(';)')
+    })
+    
 
-    console.log(this.callBack)
-    setTimeout(()=>{
-        console.log(this)
-    },6000)
+    var server = app.listen(PORT, function () {
+        const host = server.address().address;
+        const port = server.address().port;
+        console.log(`Konradusko-blog listening at http://${host}:${port}`);
+    });
+
 })
 
-app.get('/',(req,res)=>{
-
-})
-
-var server = app.listen(PORT, function () {
-    const host = server.address().address;
-    const port = server.address().port;
-    console.log(`Konradusko-blog listening at http://${host}:${port}`);
-});
