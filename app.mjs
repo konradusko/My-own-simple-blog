@@ -26,6 +26,7 @@ app.set('views','./template')
 //Loading content
 
 content.loadContent()
+
 app.get('/',(req,res)=>{
 
 })

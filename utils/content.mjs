@@ -1,10 +1,14 @@
 import {createTime} from '../modules/getTime.mjs'
 import path from 'path'
 import fs from 'fs'
-import utils from 'util'
+import {index_file} from './index_files.mjs'
 //Processing files
 function Content(){
-
+    this.operationRunning = false
+    this.contentProcessing = []
+    this.queque = {}
+    this.content = []
+    this.error = false
 }
 Content.prototype.check_md_type = function(name){
     if(typeof name != 'string')
@@ -22,29 +26,49 @@ Content.prototype.filter_files = function(array_files){
     })
     return checker
 }
+Content.prototype.check_queque = function(filename){
+    delete this.queque[filename]
+    if(Object.keys(this.queque).length === 0 ){
+        console.log(`Start indexing files at time ${createTime()}`)
+        index_file.create_index_for_files(this.contentProcessing,(err,content)=>{
+
+        })
+    }
+      
+
+}
 Content.prototype.processFile = function(filename,filePath){
     let file_obj = {
         filename:filename
     }
     fs.stat(filePath,(err,stats)=>{
         if(err)
-            return null
-        console.log(stats.birthtime)
-        console.log(stats.mtime)
+            return this.check_queque(filename)
+        file_obj['birth_time'] = stats.birthtime
+        file_obj['modify_time'] = stats.mtime
+        fs.readFile(filePath,(err,buffer)=>{
+            if(err)
+                return this.check_queque(filename)
+            file_obj['buffer'] = buffer
+            this.contentProcessing.push(file_obj)
+            return this.check_queque(filename)
+        })
     })
 }
 Content.prototype.processContentFiles= function(array_files,path_content){
     if(!Array.isArray(array_files))
         return null
-    const cb = 
     array_files.forEach((filename)=>{
+        //Adding to queuqe
+
         const filePath = path.join(path_content,filename)
-        console.log(filePath)
-        const file_name = filename.slice(-3)
+        const file_name = filename.slice(0,-3)
+        this.queque[file_name] = true
         return this.processFile(file_name,filePath)
     })
 }
 Content.prototype.loadContent = function(){
+    this.operationRunning = true
     console.log(`Loading content on time ${createTime()}`)
     const path_content = process.env['content_path'] || path.join('content')
     fs.readdir(path_content,(err,files)=>{
