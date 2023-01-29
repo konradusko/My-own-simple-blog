@@ -8,7 +8,9 @@ function Content(){
     this.contentProcessing = []
     this.queque = {}
     this.content = []
-    this.error = false
+}
+Content.prototype.operationStatus = function(){
+    return this.operationRunning
 }
 Content.prototype.check_md_type = function(name){
     if(typeof name != 'string')
@@ -30,8 +32,20 @@ Content.prototype.check_queque = function(filename){
     delete this.queque[filename]
     if(Object.keys(this.queque).length === 0 ){
         console.log(`Start indexing files at time ${createTime()}`)
+        console.log(this.contentProcessing.length,'sprawdzam przekazana dlugosc')
         index_file.create_index_for_files(this.contentProcessing,(err,content)=>{
-
+            if(err){
+                this.callBack(`Error while indexing files:${err} at time ${createTime()}`)
+                delete this.callBack 
+                return
+            }
+            this.content = content
+            this.contentProcessing = []
+            this.queque = {}
+            this.operationRunning = false
+            this.callBack(null,'Local file loaded...')  
+            delete this.callBack 
+            return          
         })
     }
       
@@ -67,16 +81,25 @@ Content.prototype.processContentFiles= function(array_files,path_content){
         return this.processFile(file_name,filePath)
     })
 }
-Content.prototype.loadContent = function(){
+Content.prototype.loadContent = function(callback){
     this.operationRunning = true
+    if(callback)
+    this.callBack = callback
     console.log(`Loading content on time ${createTime()}`)
     const path_content = process.env['content_path'] || path.join('content')
     fs.readdir(path_content,(err,files)=>{
-        if(err)
-            return null
+        if(err){
+            if(this.callBack)
+                return this.callBack('Error while loading files',null)
+                return null
+        }
+           
         const filtered_files = this.filter_files(files)
-        if(filtered_files.length ==0)
+        if(filtered_files.length ==0){
+            if(this.callBack)
+            return this.callBack('Error while loading files',null)
             return null
+        }
         this.processContentFiles(filtered_files,path_content)
     })
 }

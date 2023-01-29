@@ -25,7 +25,15 @@ app.set('views','./template')
 
 //Loading content
 
-content.loadContent()
+content.loadContent(function(err,message){
+    console.log(err,message)
+    console.log(content.operationStatus())
+
+    console.log(this.callBack)
+    setTimeout(()=>{
+        console.log(this)
+    },6000)
+})
 
 app.get('/',(req,res)=>{
 
