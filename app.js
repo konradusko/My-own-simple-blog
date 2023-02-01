@@ -18,11 +18,12 @@
     })
     console.log(Module_config.getConfig())
     //Loading content
-    content.loadContent(function(err,message){
+    content.loadContent(async function(err,message){
         if(err){
             console.log(err)
             return 
         }
+   
         var server = app.listen(PORT, function () {
             const host = server.address().address;
             const port = server.address().port;

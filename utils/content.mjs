@@ -2,6 +2,7 @@ import {createTime} from '../modules/getTime.mjs'
 import path from 'path'
 import fs from 'fs'
 import {index_file} from './index_files.mjs'
+import {cache} from './cache.mjs'
 //Processing files
 function Content(){
     this.operationRunning = false
@@ -10,6 +11,7 @@ function Content(){
     this.content = []
     this.lastUpdate = new Date().getTime()
     this.tags = []
+    this.clearCache = cache.cleanAll
 }
 Content.prototype.getTags = function(){
     return this.tags
@@ -101,6 +103,12 @@ Content.prototype.processContentFiles= function(array_files,path_content){
     })
 }
 Content.prototype.loadContent = function(callback){
+    this.clearCache((err,message)=>{
+        if(err)
+            console.log(err)
+        if(message)
+            console.log(message)
+    })
     if(this.operationRunning){
         if(callback)
             return callback('Operation is already running',null)

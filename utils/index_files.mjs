@@ -1,4 +1,4 @@
-
+import {marked} from 'marked'
 function Indexing_file_module(){
     this.processed_data = []
 }
@@ -52,7 +52,7 @@ Indexing_file_module.prototype.handle_one_content = function(content,cb){
         tags:this.getTags(buffer_to_string),
         image: this.getImage(buffer_to_string),
         description:this.getDescription(buffer_to_string),
-        content:buffer_to_string.replace(/\[konradusko:(.*)\[\/konradusko:(.*)]/g,''),
+        content:marked.parse(buffer_to_string.replace(/\[konradusko:(.*)\[\/konradusko:(.*)]/g,'')),
         filename:content['filename'],
         birth_time:content['birth_time'],
         modify_time:content['modify_time'],
