@@ -23,9 +23,14 @@ Config.prototype.loadConfig = function(cb){
 Config.prototype.reloadConfig = function(cb){
     this.config = null
     this.loadConfig((err,message)=>{
-        if(err)
-            return cb(err,null)
+        if(err){
+            if(cb)
+                return cb(err,null)
+                console.log(err)
+        }
+        if(cb)
         return cb(null,message)
+        console.log(message)
     })
 }
 Config.prototype.getConfig = function(){

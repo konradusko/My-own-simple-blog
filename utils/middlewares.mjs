@@ -8,7 +8,6 @@ function Middlewares(){
 
 Middlewares.prototype.checkUpdate = function(req,res,next){
     next()
-    console.log('Middleware sprawdza')
     const current_date = new Date().getTime()
     if(current_date > content.getTimeLastUpdate() +(Module_config.getConfig().cacheRefreshTime * 3600000) && !content.operationStatus()  ){
         console.log(`Start refreshing cache at time: ${createTime()}`)
