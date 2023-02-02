@@ -3,6 +3,7 @@ import path from 'path'
 import fs from 'fs'
 import {index_file} from './index_files.mjs'
 import {cache} from './cache.mjs'
+import {group_by_tag} from '../modules/groups.mjs'
 //Processing files
 function Content(){
     this.operationRunning = false
@@ -12,6 +13,12 @@ function Content(){
     this.lastUpdate = new Date().getTime()
     this.tags = []
     this.clearCache = cache.cleanAll
+    this.group_tags_by_content = {}
+}
+Content.prototype.getTagWithGroup = function(tag){
+    if(!this.group_tags_by_content[tag])
+        return null
+    return this.group_tags_by_content[tag]
 }
 Content.prototype.getTags = function(){
     return this.tags
@@ -61,12 +68,19 @@ Content.prototype.check_queque = function(filename){
             }
             this.tags = tmp_tags
             this.content = content
+            this.group_tags_by_content = group_by_tag(this.tags,this.content)
             this.contentProcessing = []
             this.queque = {}
             this.operationRunning = false
+            this.clearCache((err,message)=>{
+                if(err)
+                    console.log(err)
+                if(message)
+                    console.log(message)
             this.callBack(null,'Local file loaded...')  
             delete this.callBack 
-            return          
+            })
+             
         })
     }
       
@@ -103,12 +117,7 @@ Content.prototype.processContentFiles= function(array_files,path_content){
     })
 }
 Content.prototype.loadContent = function(callback){
-    this.clearCache((err,message)=>{
-        if(err)
-            console.log(err)
-        if(message)
-            console.log(message)
-    })
+ 
     if(this.operationRunning){
         if(callback)
             return callback('Operation is already running',null)

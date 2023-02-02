@@ -45,6 +45,15 @@ Indexing_file_module.prototype.getImage = function(string){
         return ''
     return search[1]
 }
+Indexing_file_module.prototype.getAuthor = function(string){
+    if(typeof string != 'string')
+    return ''
+    const reg_title = RegExp(/\[konradusko:author](.*)\[\/konradusko:author]/)
+    const search = reg_title.exec(string)
+    if(!search)
+        return ''
+    return search[1] 
+}
 Indexing_file_module.prototype.handle_one_content = function(content,cb){
     let buffer_to_string = content.buffer.toString()
     let obj_for_index = {
@@ -53,6 +62,7 @@ Indexing_file_module.prototype.handle_one_content = function(content,cb){
         image: this.getImage(buffer_to_string),
         description:this.getDescription(buffer_to_string),
         content:marked.parse(buffer_to_string.replace(/\[konradusko:(.*)\[\/konradusko:(.*)]/g,'')),
+        author:this.getAuthor(buffer_to_string),
         filename:content['filename'],
         birth_time:content['birth_time'],
         modify_time:content['modify_time'],
