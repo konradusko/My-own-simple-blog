@@ -22,7 +22,7 @@ Indexing_file_module.prototype.getTags = function(string){
     for(const tags of match_tags){
         const output = not_global.exec(tags)
         if(output)
-            tags_array.push(output[1])
+            tags_array.push(output[1].trim())
     }
     //remove duplicate
     return  [...new Set(tags_array)];
@@ -57,12 +57,12 @@ Indexing_file_module.prototype.getAuthor = function(string){
 Indexing_file_module.prototype.handle_one_content = function(content,cb){
     let buffer_to_string = content.buffer.toString()
     let obj_for_index = {
-        title:this.getTitle(buffer_to_string),
+        title:this.getTitle(buffer_to_string).trim(),
         tags:this.getTags(buffer_to_string),
-        image: this.getImage(buffer_to_string),
-        description:this.getDescription(buffer_to_string),
+        image: this.getImage(buffer_to_string).trim(),
+        description:this.getDescription(buffer_to_string).trim(),
         content:marked.parse(buffer_to_string.replace(/\[konradusko:(.*)\[\/konradusko:(.*)]/g,'')),
-        author:this.getAuthor(buffer_to_string),
+        author:this.getAuthor(buffer_to_string).trim(),
         filename:content['filename'],
         birth_time:content['birth_time'],
         modify_time:content['modify_time'],
