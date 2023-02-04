@@ -15,5 +15,3 @@ TESTss
 [konradusko:tag]tes[/konradusko:tag]
 
 [konradusko:description]Description[/konradusko:description]
-
-[konradusko:image]image[/konradusko:image]

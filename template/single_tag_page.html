@@ -8,5 +8,12 @@
 </head>
 <body>
     Single tag page
+    <%= JSON.stringify(data)%>
+    <script>
+    const data =  '<%= JSON.stringify(data)%>'
+    const datav2 =  '<%= data%>'
+    console.log(JSON.parse(data))
+    
+    </script>
 </body>
 </html>

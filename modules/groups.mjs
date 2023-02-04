@@ -16,7 +16,9 @@ for(const tag of tags){
     tag_content[tag].content = tag_content[tag].content.sort(function(a,b){
         return b.birth_time.getTime() - a.birth_time.getTime()
     })
-    tag_content[tag].max_page = Math.round(tag_content[tag].content.length/Module_config.getConfig().tagsPagePosts)
+    tag_content[tag].max_page = (tag_content[tag].content.length/Module_config.getConfig().tagsPagePosts) %1 !=0 ?Math.trunc((tag_content[tag].content.length/Module_config.getConfig().tagsPagePosts)+1):Math.trunc(tag_content[tag].content.length/Module_config.getConfig().tagsPagePosts)
+    tag_content[tag].max_page = Math.sign(tag_content[tag].max_page) == -1 ||  Math.sign(tag_content[tag].max_page) == 0?1: tag_content[tag].max_page
+    tag_content[tag].posts_on_tag = Module_config.getConfig().tagsPagePosts
 }
 return tag_content
 }

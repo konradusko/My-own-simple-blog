@@ -16,7 +16,7 @@ Config.prototype.loadConfig = function(cb){
         console.log(`Error while loaded config`)
         console.log(error)
         if(cb)
-            return cb('Filed to Load config',null)
+            return cb('Failed to Load config',null)
     }
  
 }
