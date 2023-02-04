@@ -16,9 +16,10 @@ export function one_tag_page_get(req,res){
     if(!content_local)
         return createErrorResponse('404') 
     if(page> content_local.max_page)
-        page = content_local.max_page
+        page = 1
     if('query' in req.query && req.query.query.trim().length !=0){
         //Now we have page with search query
+        const query = req.query.query
     }else{
         //We are looking only for tag so we can cache this page
         console.log('ehheehe')
@@ -27,7 +28,11 @@ export function one_tag_page_get(req,res){
         cache.getCache(cache_tag,(err,cachedPage)=>{
             if(err){
                 console.log(params.tag)
-                const data_to_redner = calculate_index_tag_page(content_local,page,params.tag,"")
+                const data_to_redner = calculate_index_tag_page({
+                    content:content_local.content,
+                    max_page:content_local.max_page,
+                    posts_on_tag:content_local.posts_on_tag
+                },page,params.tag,"")
                 return render_page({
                     template:'single_tag_page.html',
                     object:data_to_redner,

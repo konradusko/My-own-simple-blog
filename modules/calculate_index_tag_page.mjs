@@ -1,19 +1,21 @@
 
-export function calculate_index_tag_page(content,page,tag,query){
-console.log(content.max_page,'max page')
-console.log(content.posts_on_tag,'posts on tags')
-console.log(content.content.length,'dlugosc')
-    const start_index = content.posts_on_tag * (page-1),
-    end_index = content.posts_on_tag * (page-1) +content.posts_on_tag
-
-    console.log(start_index)
+export function calculate_index_tag_page({
+    content,
+    max_page,
+    posts_on_tag
+},page,tag,query){
+    console.log(content)
+    const start_index = posts_on_tag * (page-1),
+    end_index = posts_on_tag * (page-1) +posts_on_tag
     const data = {
-        posts : content.content.slice(start_index,end_index),
-        next_page: page +1 > content.max_page? null: `/tag/${tag}?page=${page+1}&query=${query}`,
+        posts : content.slice(start_index,end_index),
+        next_page: page +1 > max_page? null: `/tag/${tag}?page=${page+1}&query=${query}`,
         prev_page:page-1 == 0 ?null : `/tag/${tag}?page=${page-1}&query=${query}`,
         tag:tag,
         current_page:page,
-        max_page:content.max_page
+        max_page:max_page,
+        query:query,
+        
     }
     return data  
 }

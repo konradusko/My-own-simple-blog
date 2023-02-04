@@ -12,6 +12,7 @@ function Content(){
     this.content = []
     this.lastUpdate = new Date().getTime()
     this.tags = []
+    this.tags_hrefs = []
     this.clearCache = cache.cleanAll
     this.group_tags_by_content = {}
 }
@@ -19,6 +20,9 @@ Content.prototype.getTagWithGroup = function(tag){
     if(!this.group_tags_by_content[tag])
         return null
     return this.group_tags_by_content[tag]
+}
+Content.prototype.getTagsHrefs = function(){
+    return this.tags_hrefs
 }
 Content.prototype.getTags = function(){
     return this.tags
@@ -60,13 +64,20 @@ Content.prototype.check_queque = function(filename){
                 return
             }
             let tmp_tags = []
+            let tmp_tags_hrefs = []
             for(const single_content of content){
                 for(const tags of single_content.tags){
                     if(!tmp_tags.includes(tags))
                         tmp_tags.push(tags)
+                    if(!tmp_tags_hrefs.find((el)=>el.tag == tags))
+                        tmp_tags_hrefs.push({
+                            tag:tags,
+                            link:'/'+tags
+                        })
                 }
             }
             this.tags = tmp_tags
+            this.tags_hrefs = tmp_tags_hrefs
             this.content = content
             this.group_tags_by_content = group_by_tag(this.tags,this.content)
             this.contentProcessing = []
