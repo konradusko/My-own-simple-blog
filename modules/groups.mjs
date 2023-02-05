@@ -1,4 +1,16 @@
 import { Module_config } from "./config.mjs"
+export function calcMaxPage(content){
+        const content_local=content.sort(function(a,b){
+            return b.birth_time.getTime() - a.birth_time.getTime()
+        })
+        const max_page = (content_local.length/Module_config.getConfig().tagsPagePosts) %1 !=0 ?Math.trunc((content_local.length/Module_config.getConfig().tagsPagePosts)+1):Math.trunc(content_local.length/Module_config.getConfig().tagsPagePosts)
+        const posts_on_tag = Module_config.getConfig().tagsPagePosts
+        return {
+            filtered_content_by_query:content_local,
+            max_page,
+            posts_on_tag
+        }
+}
 export function group_by_tag (tags,content){
 
 let tag_content = {}
