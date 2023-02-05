@@ -12,7 +12,7 @@ export const render_page = ({
     try {
         const page = ejs.render(fs.readFileSync(path.join(__dirname,'template',template),'utf-8').toString(),{data:object})
         cache.createCache(tag,page,(err,message)=>{
-          
+            console.log(err)
             if(err)
                 return cb('Error while caching page',null)
             console.log(`Cache Page at time ${createTime()}, tag:${tag}`)

@@ -3,7 +3,9 @@ function Cache(){
     this.cachedPages={}
 }
 Cache.prototype.createCache = function(id,content,cb){
-    if(typeof id != "string" || typeof content != 'string')
+    if(typeof id != "string" )
+        return cb('Wrong data provided',null)
+    if(typeof content != 'string' && typeof content != 'object')
         return cb('Wrong data provided',null)
     if(this.cachedPages[id])
         return cb(null,'Cache exists')

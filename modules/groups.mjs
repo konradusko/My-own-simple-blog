@@ -1,5 +1,11 @@
 import { Module_config } from "./config.mjs"
 export function calcMaxPage(content){
+        if(content.length == 0 )
+        return {
+            filtered_content_by_query:[],
+            max_page:1,
+            posts_on_tag:Module_config.getConfig().tagsPagePosts
+        }
         const content_local=content.sort(function(a,b){
             return b.birth_time.getTime() - a.birth_time.getTime()
         })

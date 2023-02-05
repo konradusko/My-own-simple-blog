@@ -4,7 +4,6 @@ export function calculate_index_tag_page({
     max_page,
     posts_on_tag
 },page,tag,query){
-    console.log(content)
     const start_index = posts_on_tag * (page-1),
     end_index = posts_on_tag * (page-1) +posts_on_tag
     const data = {
@@ -15,7 +14,7 @@ export function calculate_index_tag_page({
         current_page:page,
         max_page:max_page,
         query:query,
-        
+
     }
     return data  
 }
