@@ -14,4 +14,4 @@ TESTss
 [konradusko:tag]xd[/konradusko:tag]
 [konradusko:tag]tes[/konradusko:tag]
 
-[konradusko:description]Description[/konradusko:description]
+[konradusko:description]Description konrad[/konradusko:description]

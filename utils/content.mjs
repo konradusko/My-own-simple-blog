@@ -72,7 +72,7 @@ Content.prototype.check_queque = function(filename){
                     if(!tmp_tags_hrefs.find((el)=>el.tag == tags))
                         tmp_tags_hrefs.push({
                             tag:tags,
-                            link:'/'+tags
+                            link:'/tag/'+tags
                         })
                 }
             }

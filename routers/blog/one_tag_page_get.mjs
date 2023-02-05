@@ -1,7 +1,7 @@
 import { createErrorResponse } from '../../modules/createError.mjs'
 import { cache } from '../../utils/cache.mjs'
 import { content } from '../../utils/content.mjs'
-import { calculate_index_tag_page } from '../../modules/calculate_index_tag_page.mjs'
+import { calculate_index_tag_page } from '../../modules/calculate_index_page.mjs'
 import { render_page } from '../../modules/render_page.mjs'
 import { calcMaxPage } from '../../modules/groups.mjs'
 import { createTime } from '../../modules/getTime.mjs'
@@ -37,6 +37,7 @@ export function one_tag_page_get(req,res){
                 console.log(`Used cache for query ${query}`)
                 cache_tmp = cacheQuery
             }
+            console.log('here')
             if(page> cache_tmp.max_page)
             return res.redirect( req._parsedUrl.pathname+`?page=1&query=${query}`)
             const cache_tag_to_save = req._parsedUrl.pathname+`?page=${page}&query=${query}`
@@ -45,7 +46,7 @@ export function one_tag_page_get(req,res){
                     const data_to_redner = calculate_index_tag_page({
                         content:cache_tmp.filtered_content_by_query,
                         max_page:cache_tmp.max_page,
-                        posts_on_tag:cache_tmp.posts_on_tag
+                        posts_on_page:cache_tmp.posts_on_page
                     },page,params.tag,query)
                     return render_page({
                         template:'single_tag_page.html',
@@ -74,7 +75,7 @@ export function one_tag_page_get(req,res){
                 const data_to_redner = calculate_index_tag_page({
                     content:content_local.content,
                     max_page:content_local.max_page,
-                    posts_on_tag:content_local.posts_on_tag
+                    posts_on_page:content_local.posts_on_page
                 },page,params.tag,"")
                 return render_page({
                     template:'single_tag_page.html',

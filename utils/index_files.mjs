@@ -66,7 +66,7 @@ Indexing_file_module.prototype.handle_one_content = function(content,cb){
         filename:content['filename'],
         birth_time:content['birth_time'],
         modify_time:content['modify_time'],
-        link:'/' + content['filename'],
+        link:'/post/' + content['filename'],
         nextPage:null,
         prevPage:null
     }

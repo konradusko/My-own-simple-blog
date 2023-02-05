@@ -1,6 +1,14 @@
 import path from 'path'
 import {__dirname} from '../../dirname.mjs'
+export function page_not_found(req,res){
+    try {
+        return res.status(404).sendFile(path.join(__dirname,'template','404.html'))
+    } catch (error) {
+        res.send('Wystąpił błąd')        
+    }
+}
 export function handleError(err, req, res, next){
+    console.log(err)
     function sendToClient(staticPage,status){
         try {
             return res.status(status).sendFile(path.join(__dirname,'template',staticPage))
