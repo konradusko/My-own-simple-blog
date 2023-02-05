@@ -22,7 +22,7 @@ export function one_tag_page_get(req,res){
         cache.getCache(query_tag_cache_search,(err,cacheQuery)=>{
             let cache_tmp;
             if(err){
-                console.log(`There is no cache for query ${query}`)
+                console.log(`There is no cache for query ${query} at ${req._parsedUrl.pathname}`)
                 const filtered_by_query = content_local.content.filter((element)=>{
                     if(element.title.toLowerCase().includes(query)|| element.description.toLowerCase().includes(query)|| element.filename.toLowerCase().includes(query))
                         return element
@@ -37,7 +37,6 @@ export function one_tag_page_get(req,res){
                 console.log(`Used cache for query ${query}`)
                 cache_tmp = cacheQuery
             }
-            console.log('here')
             if(page> cache_tmp.max_page)
             return res.redirect( req._parsedUrl.pathname+`?page=1&query=${query}`)
             const cache_tag_to_save = req._parsedUrl.pathname+`?page=${page}&query=${query}`

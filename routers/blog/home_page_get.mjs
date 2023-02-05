@@ -4,6 +4,8 @@ import { calculate_index_home_page } from '../../modules/calculate_index_page.mj
 import { calcMaxPage } from '../../modules/groups.mjs'
 import { createTime } from '../../modules/getTime.mjs'
 import { render_page } from '../../modules/render_page.mjs'
+import { createErrorResponse } from '../../modules/createError.mjs'
+import { Module_config } from '../../modules/config.mjs'
 export function home_page_get(req,res){
     let page = !isNaN(req.query.page) ? Math.abs(Math.trunc(req.query.page)) : 1 || 1
     let content_local = content.getContent()

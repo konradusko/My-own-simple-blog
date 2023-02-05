@@ -3,6 +3,7 @@ import { content } from '../../utils/content.mjs'
 import {render_page} from '../../modules/render_page.mjs'
 import { cache } from '../../utils/cache.mjs'
 import { createErrorResponse } from '../../modules/createError.mjs'
+import { Module_config } from '../../modules/config.mjs'
 
 export function tags_page(req,res){
     cache.getCache(req._parsedUrl.pathname,(err,cachedPage)=>{
