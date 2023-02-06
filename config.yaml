@@ -3,5 +3,6 @@ cacheRefreshTime: 1
 mainPagePosts: 1
 tagsPagePosts: 1
 template: standard
+allowJsonData: true
 login: test
 password: test 

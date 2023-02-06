@@ -17,6 +17,6 @@ TESTss
 [konradusko:tag]Title7[/konradusko:tag]
 
 
-[konradusko:description]Description[/konradusko:description]
+[konradusko:description]Description konrad[/konradusko:description]
 
 [konradusko:image]image[/konradusko:image]

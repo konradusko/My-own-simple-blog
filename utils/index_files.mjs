@@ -66,7 +66,7 @@ Indexing_file_module.prototype.handle_one_content = function(content,cb){
         filename:content['filename'],
         birth_time:content['birth_time'],
         modify_time:content['modify_time'],
-        link:'/post/' + content['filename'],
+        link:'/posts/' + content['filename'],
         nextPage:null,
         prevPage:null
     }
@@ -90,11 +90,11 @@ Indexing_file_module.prototype.create_index_for_files = function(contentProcessi
         if(_current_number ==0)
             this.processed_data[i].prevPage = null
         if(_current_number  != 0)
-        this.processed_data[i].prevPage = '/' + this.processed_data[_current_number -1]['filename']
+        this.processed_data[i].prevPage = '/posts/' + this.processed_data[_current_number -1]['filename']
         if(_current_number +1 > this.processed_data.length)
         this.processed_data[i].nextPage = null
         if(_current_number +1 < this.processed_data.length)
-        this.processed_data[i].nextPage = '/'+ this.processed_data[_current_number +1]['filename']
+        this.processed_data[i].nextPage = '/posts/'+ this.processed_data[_current_number +1]['filename']
     }
     return cb(null,this.processed_data)
 
