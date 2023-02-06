@@ -1,3 +1,7 @@
 1. Możliwość tworzenia i wybierania szablonu
 2. Api do pobierania dodawania edycji postu
 3. Podgląd live
+
+
+Pamietać
+Po zmianie w config w 99% należy przeladować cache
