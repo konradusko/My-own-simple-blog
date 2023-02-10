@@ -7,7 +7,7 @@ app.engine('html', ejs.renderFile);
 app.set('views','./template')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-
+app.use(express.static('public'))
 app.all('/*', middlewares.checkUpdate)
 //home page handler
 import {home_page_get} from '../routers/blog/home_page_get.mjs'
