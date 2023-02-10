@@ -1,12 +1,15 @@
-title: Konradusko Blog
+
 cacheRefreshTime: 1
-mainPagePosts: 1
+mainPagePosts: 4
 tagsPagePosts: 1
 template: standard
 allowJsonData: true
 login: test
 password: test 
 template_data:
+  title: Konradusko Blog
+  nav:
+    logoSrc: https://avatars.githubusercontent.com/u/42543331?v=4
   footer:
     companyName: test
     fb_link: 
@@ -16,3 +19,4 @@ template_data:
   links:
     homePage: /
     tagsPage: /tags
+    singleTagPage: /tag/

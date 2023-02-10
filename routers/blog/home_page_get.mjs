@@ -14,7 +14,7 @@ export function home_page_get(req,res){
     if('query' in req.query && req.query.query.trim().length !=0){
         const query = req.query.query
         //We have search query
-        const cache_path_query = req._parsedUrl.pathname +'engine_data_cache yes_query'
+        const cache_path_query = req._parsedUrl.pathname +'engine_data_cache yes_query' + `_query=${query}`
         cache.getCache(cache_path_query,(err,cachedData)=>{
             let tmp_data;
             if(err){

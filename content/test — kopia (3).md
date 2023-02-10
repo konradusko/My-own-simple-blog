@@ -19,4 +19,4 @@ TESTss
 
 [konradusko:description]Description konrad[/konradusko:description]
 
-[konradusko:image]image[/konradusko:image]
+[konradusko:image]https://source.unsplash.com/collection/1346951/500x500?sig=1[/konradusko:image]
