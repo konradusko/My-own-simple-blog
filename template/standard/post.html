@@ -74,7 +74,7 @@ width: 100%; " class="bg-gray-50">
 
 
 
-  <div style="max-width:80%" class="container mx-auto flex flex-wrap py-6">
+  <div style="max-width:80vw" class="container mx-auto flex flex-wrap py-6">
     <section class="w-full md:w-2/3 flex flex-col items-center px-3">
         <article class="flex flex-col shadow my-4 w-full">
       
@@ -95,9 +95,12 @@ width: 100%; " class="bg-gray-50">
                 <p  class="text-sm pb-3">
                     Autor <span  class="font-semibold hover:text-gray-800"><%= data.author %></span>, Post dodany <%= data.birth_time %>
                 </p>
-                <span  class="pb-6 prose prose-stone">
-                    <%- data.content %>
-                    </span>
+                <div>
+                    <div style="width:100%;max-width:100vw;	word-break: break-all;"  class="pb-6 prose prose-stone">
+                        <%- data.content %>
+                    </div>
+                </div>
+              
             </div>
         </article>
     </section>
