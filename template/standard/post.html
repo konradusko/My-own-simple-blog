@@ -5,11 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css"  rel="stylesheet" />
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
-    <link href="http://localhost:3000/style.css"  rel="stylesheet" /> -->
-
+    <link href="http://localhost:3000/style/tailwind.css"  rel="stylesheet" />
+    <link href="http://localhost:3000/style/flowbite.css"  rel="stylesheet" />
 </head>
 <body style="min-height:100%;  margin:0; display: table;
 width: 100%; " class="bg-gray-50">
@@ -83,7 +80,7 @@ width: 100%; " class="bg-gray-50">
       
             <% if(data.image) {%>
                 <span  class="hover:opacity-75 bg-white">
-                    <img src="<%= data.image %>">
+                    <img style="width:500px;height:400px;" src="<%= data.image %>">
                 </span>
             <% } %>
             <div class="bg-white flex flex-col justify-start p-6">
@@ -98,7 +95,7 @@ width: 100%; " class="bg-gray-50">
                 <p  class="text-sm pb-3">
                     Autor <span  class="font-semibold hover:text-gray-800"><%= data.author %></span>, Post dodany <%= data.birth_time %>
                 </p>
-                <span  class="pb-6">
+                <span  class="pb-6 prose prose-stone">
                     <%- data.content %>
                     </span>
             </div>

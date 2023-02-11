@@ -5,3 +5,7 @@
 
 Pamietać
 Po zmianie w config w 99% należy przeladować cache
+
+
+
+To do width on markdown, obrazki dlugosc szerokosc
