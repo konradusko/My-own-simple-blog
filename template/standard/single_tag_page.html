@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" style="height:100%;">
 <head>
+    
+    
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title><%= template.title %></title>
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
@@ -88,6 +92,11 @@ width: 100%; " class="bg-gray-50">
 
 
     <div style="max-width:80%" class="container mx-auto flex flex-wrap py-6">
+        <% if(data.query) { %>
+            <span class="text-sm text-gray-700 dark:text-gray-400 w-full">
+                Szukana fraza:  <span class="font-semibold text-gray-900 dark:text-white"><%= data.query %></span>
+            </span>
+            <% } %>
         <span class="text-sm text-gray-700 dark:text-gray-400 w-full">
             Posty z tagu:  <span class="font-semibold text-gray-900 dark:text-white"><%= data.tag %></span>
         </span>
