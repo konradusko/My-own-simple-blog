@@ -4,18 +4,23 @@ mainPagePosts: 4
 tagsPagePosts: 1
 template: standard
 allowJsonData: true
-login: test
-password: test 
 template_data:
   title: Konradusko Blog
   nav:
     logoSrc: https://avatars.githubusercontent.com/u/42543331?v=4
   footer:
     companyName: test
-    fb_link: 
-    twitter_link:
-    instagram_link:
-    github_link: 
+    shortDescription: Blog został stworzony aby pisać o nowinkach
+    copyrightSrc: https://github.com.pl
+    contact_ownerhomePage: http://localhost:1000
+    contact_ownerEmailContact: test@gmail.com
+    contact_ownerTelephone: 
+    fb_link: test
+    twitter_link: test
+    google_link:  test
+    instagram_link: test
+    linkedin_link:  test
+    github_link:  test
   links:
     homePage: /
     tagsPage: /tags
