@@ -61,7 +61,7 @@ Indexing_file_module.prototype.handle_one_content = function(content,cb){
         tags:this.getTags(buffer_to_string),
         image: this.getImage(buffer_to_string).trim(),
         description:this.getDescription(buffer_to_string).trim(),
-        content:marked.parse(buffer_to_string.replace(/\[konradusko:(.*)\[\/konradusko:(.*)]/g,'')),
+        content:marked(buffer_to_string.replace(/\[konradusko:(.*)\[\/konradusko:(.*)]/g,'')),
         author:this.getAuthor(buffer_to_string).trim(),
         filename:content['filename'],
         birth_time:content['birth_time'],
