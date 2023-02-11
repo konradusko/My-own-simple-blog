@@ -14,11 +14,13 @@ Indexing_file_module.prototype.getTitle = function(string){
 }
 Indexing_file_module.prototype.getTags = function(string){
     if(typeof string != 'string')
-    return ''
+    return []
     let tags_array = []
     const reg_tags = RegExp(/\[konradusko:tag](.*)\[\/konradusko:tag]/g)
     const not_global = RegExp(/\[konradusko:tag](.*)\[\/konradusko:tag]/)
     const match_tags = string.match(reg_tags)
+    if(!match_tags)
+        return []
     for(const tags of match_tags){
         const output = not_global.exec(tags)
         if(output)
