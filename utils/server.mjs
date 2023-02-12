@@ -29,7 +29,10 @@ app.get('/tag/:tag',one_tag_page_get)
 import { tags_page } from '../routers/blog/tags_page.mjs';
 app.get('/tags',tags_page)
 
-
+app.get('/robots.txt', function(req, res) {
+    res.set('Content-Type', 'text/plain');
+    res.end();
+});
 
 
 
