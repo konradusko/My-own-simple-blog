@@ -8,13 +8,18 @@ import path from 'path'
 const app = express()
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
-app.use(morgan('combined', { stream: accessLogStream }))
+app.use(morgan('combined', { stream: accessLogStream, skip:function(req,res){
+    if(req.url.toLowerCase().includes(`/style/`) || req.url.toLowerCase().includes(`/favicon/`) )
+        return true
+    return false
+} }))
 app.set('view engine', 'ejs');
 app.engine('html', ejs.renderFile);
 app.set('views','./template')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use(express.static('public'))
+
+app.use("/public", express.static(__dirname + "/public"));
 app.use("/ftp/static", express.static(__dirname + "/public_FTP"));
 app.all('/*', middlewares.checkUpdate)
 //home page handler
@@ -29,7 +34,10 @@ app.get('/tag/:tag',one_tag_page_get)
 import { tags_page } from '../routers/blog/tags_page.mjs';
 app.get('/tags',tags_page)
 
-
+app.get('/robots.txt', function(req, res) {
+    res.set('Content-Type', 'text/plain');
+    res.end();
+});
 
 
 
