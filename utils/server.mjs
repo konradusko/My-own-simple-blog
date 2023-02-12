@@ -18,7 +18,8 @@ app.engine('html', ejs.renderFile);
 app.set('views','./template')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use(express.static('public'))
+
+app.use("/public", express.static(__dirname + "/public"));
 app.use("/ftp/static", express.static(__dirname + "/public_FTP"));
 app.all('/*', middlewares.checkUpdate)
 //home page handler
