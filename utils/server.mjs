@@ -8,7 +8,11 @@ import path from 'path'
 const app = express()
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
-app.use(morgan('combined', { stream: accessLogStream }))
+app.use(morgan('combined', { stream: accessLogStream, skip:function(req,res){
+    if(req.url.toLowerCase().includes(`/style/`) || req.url.toLowerCase().includes(`/favicon/`) )
+        return true
+    return false
+} }))
 app.set('view engine', 'ejs');
 app.engine('html', ejs.renderFile);
 app.set('views','./template')
