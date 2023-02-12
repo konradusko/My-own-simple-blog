@@ -14,23 +14,23 @@
 </head>
 <body style="min-height:100%;  margin:0; display: table;
 width: 100%; " class="bg-gray-50">
-    <nav style="background:linear-gradient(120deg, #3b7977 0%, #72b1bb 100%)" class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+    <nav style="background:linear-gradient(120deg, #3b7977 0%, #72b1bb 100%)" class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded ">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
         <a href="<%= template.links.homePage %>" class="flex items-center">
             <img src="<%= template.nav.logoSrc %>" class="h-6 mr-3 sm:h-9" alt="<%= template.title %> Logo" />
-            <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"><%= template.title %></span>
+            <span class="self-center text-xl font-semibold whitespace-nowrap text-white"><%= template.title %></span>
         </a>
         <div class="flex md:order-2">
           <div class="relative hidden md:block">
           
             <div class="flex items-center">   
               
-                <label for="simple-search" class="sr-only">Search</label>
+                <label for="simple-search" class="sr-only">Wyszukaj</label>
                 <div class="relative w-full">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                     </div>
-                    <input data-search="search_input" type="text" id="simple-search" name="query" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Wyszukaj" >
+                    <input data-search="search_input" type="text" id="simple-search" name="query" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5      " placeholder="Wyszukaj" >
                 </div>
              
             </div>
@@ -41,13 +41,13 @@ width: 100%; " class="bg-gray-50">
           <div class="items-center justify-between  w-full md:flex md:w-auto md:order-1" id="navbar-search">
             <div class="relative mt-3 md:hidden">
               <div class="flex items-center">   
-                <label for="simple-search" class="sr-only">Search</label>
+                <label for="simple-search" class="sr-only">Wyszukaj</label>
                 <div class="relative w-full">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                     </div>
                  
-                    <input data-search="search_input" type="text" id="simple-search" name="query" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Wyszukaj">
+                    <input data-search="search_input" type="text" id="simple-search" name="query" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  " placeholder="Wyszukaj">
                 </div>
             </div>
             </div>
@@ -67,7 +67,7 @@ width: 100%; " class="bg-gray-50">
 
       <div style="max-width:80%" class="container mx-auto flex flex-wrap py-6 mb-6">
         <section class="w-full md:w-2/3 flex flex-col items-center px-3">
-            <span class="text-xl text-gray-700 dark:text-gray-400">
+            <span class="text-xl text-gray-700 ">
             Tagi
             </span>
             <div id="tags_container" class="flex flex-wrap mb-2 mt-2">
